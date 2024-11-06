@@ -3,21 +3,20 @@ on: push
 
 jobs:
   build:
-    name: Group 6 CWork!
+    name: Hello world action
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - name: Set up JDK 11
         uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Package with Maven
-        run: mvn package  # This packages the project into a JAR
-      - name: Build Docker Image
-        run: docker build -t semimage .
-      - name: Run image
-        run: docker run --name semcontainer -d semimage
-      - name: View logs
-        run: docker logs semcontainer
+      - name: Build with Maven
+        run: mvn package
+      - name: Run docker compose
+        run: docker compose up --abort-on-container-exit
+
