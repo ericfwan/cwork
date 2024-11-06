@@ -4,8 +4,7 @@ import java.sql.*;
 
 public class App
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws SQLException {
         try
         {
             // Load Database driver
@@ -34,13 +33,7 @@ public class App
                 Thread.sleep(10000);
                 // Exit for loop
                 break;
-            }
-            catch (SQLException sqle)
-            {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            }
-            catch (InterruptedException ie)
+            } catch (InterruptedException ie)
             {
                 System.out.println("Thread interrupted? Should not happen.");
             }
