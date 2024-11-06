@@ -1,11 +1,19 @@
 package com.napier.sem;
 
 public class Country {
-    public String name;
-    public int population;
+    private String name;
+    private int population;
 
-    // Constructor
-    public Country() {}
+    public Country(String name, int population) {
+        this.name = name;
+        this.population = population;
+    }
 
-    // Optionally, you can add getters and setters if required
+    public String getName() {
+        return name;
+    }
+
+    public int getPopulation() {
+        return population;
+    }
 }
