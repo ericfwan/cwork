@@ -1,5 +1,5 @@
 # Use MySQL base image
-FROM mysql
+FROM mysql:8.3
 
 # Set working directory inside the container
 WORKDIR /tmp
