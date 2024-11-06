@@ -21,19 +21,19 @@ public class Main {
         String continent = scanner.nextLine();
 
         // Get the top N countries by population in a continent (if provided)
-        // UNCOMMENT THIS BACK ONCE IT'S READY ArrayList<Country> countries = a.getTopNCountriesByPopulation(continent, N);
+   ArrayList<Country> countries = a.getTopNCountriesByPopulation(continent, N);
 
         // Print the result
-        /* UNCOMMENT THIS BACK ONCE IT'S READY
+
         if (countries != null) {
             System.out.println("Top " + N + " countries fetched:");
             for (Country country : countries) {
                 System.out.println(country.name + " - " + country.population);
             }
         }
-         */
+
 
         // Disconnect from the database
-        // UNCOMMENT THIS BACK ONCE IT'S READY a.disconnect();
+        a.disconnect();
     }
 }
