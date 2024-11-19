@@ -6,7 +6,7 @@ public class countryPopulationLargestToSmallest {
     public void run(){
         try {
             //db connection
-            Connection con = DriverManager.getConnection("jdbc:mysql://db:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+            Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
 
 
             if (con != null) { // connection integrity check
