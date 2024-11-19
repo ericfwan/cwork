@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class App
 {
-    public static void main(String[] args) throws SQLException {
+     public void connectToDatabase() throws SQLException {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -15,7 +15,7 @@ public class App
 
         // Connection to the database
         Connection con = null;
-        int retries = 100;
+        int retries = 3;
         for (int i = 0; i < retries; ++i) {
             System.out.println("Connecting to database...");
             try {
