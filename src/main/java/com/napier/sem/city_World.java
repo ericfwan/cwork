@@ -2,19 +2,19 @@ package com.napier.sem;
 
 import java.sql.*;
 
-public class countryPopulationLargestToSmallest {
+public class city_World {
     public void run(){
         try {
             //db connection
-            Connection con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
 
 
             if (con != null) { // connection integrity check
-                String query = ("SELECT * FROM country ORDER BY population DESC");
+                String query = ("SELECT * FROM city ORDER BY population DESC");
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
 
-                System.out.println("Results:");
+                System.out.println("City population from largest to smallest");
                 while (rs.next()) {
 
 
@@ -24,6 +24,7 @@ public class countryPopulationLargestToSmallest {
                     System.out.printf("Name: %s, Population: %d\n" , name , population);
 
                 }
+                System.out.println("\n\n\n\n");
                 rs.close();
                 stmt.close();
             }
