@@ -40,5 +40,36 @@ public class Main {
             city_Dist count11 = new city_Dist();
             count11.run("Gelderland");
 
+            topNCity_World count12 = new topNCity_World();
+            count12.run(3);
+
+            topNCity_Cont count13 = new topNCity_Cont();
+            count13.run(4, "Africa");
+
+            topNCity_Reg count14 = new topNCity_Reg();
+            count14.run(5, "Western Africa");
+
+            topNCity_Dist count15 = new topNCity_Dist();
+            count15.run(2, "Gelderland");
+
+            capCity_World count16 = new capCity_World();
+            count16.run();
+
+            capCity_Cont count17 = new capCity_Cont();
+            count17.run("Asia");
+
+            capCity_Reg count18 = new capCity_Reg();
+            count18.run("Western Africa");
+
+            topNcapCity_World count19 = new topNcapCity_World();
+            count19.run(3);
+
+            topNCapCity_Cont count20 = new topNCapCity_Cont();
+            count20.run(4, "Asia");
+
+            topNCapCity_Reg count21 = new topNCapCity_Reg();
+            count21.run(3, "Western Africa");
+
+
     }
 }
