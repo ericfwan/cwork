@@ -3,10 +3,10 @@ package com.napier.sem;
 import java.sql.*;
 
 public class city_Cont {
-    public void run(String cont){
+    public void run(App app, String cont){
         try {
             // db connection
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+            Connection con = app.connectToDatabase();
 
             if (con != null) { // connection integrity check
 

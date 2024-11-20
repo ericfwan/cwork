@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class App
 {
-     public void connectToDatabase() throws SQLException {
+     public Connection connectToDatabase() throws SQLException {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -50,5 +50,6 @@ public class App
                 System.out.println("Error closing connection to database");
             }
         }
-    }
+         return con;
+     }
 }

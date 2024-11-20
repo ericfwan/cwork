@@ -3,11 +3,10 @@ package com.napier.sem;
 import java.sql.*;
 
 public class topNCoun_Wrld {
-    public void run(int top){
+    public void run(App app, int top){
         try {
             //db connection
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-
+            Connection con = app.connectToDatabase();
 
             if (con != null) { // connection integrity check
                 String queryTop = ("SELECT * FROM country ORDER BY population DESC LIMIT " +top+ ";");

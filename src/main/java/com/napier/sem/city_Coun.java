@@ -3,7 +3,7 @@ package com.napier.sem;
 import java.sql.*;
 
 public class city_Coun {
-    public void run(String coun){
+    public void run(App app, String coun){
         try {
             // db connection
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");

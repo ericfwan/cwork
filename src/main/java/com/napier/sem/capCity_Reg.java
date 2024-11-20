@@ -3,11 +3,10 @@ package com.napier.sem;
 import java.sql.*;
 
 public class capCity_Reg {
-    public void run(String reg){
+    public void run(App app, String reg){
         try {
             //db connection
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-
+            Connection con = app.connectToDatabase();
 
             if (con != null) { // connection integrity check
                 String query = ("SELECT * FROM city JOIN country ON city.countrycode = country.code WHERE city.id = country.capital and country.region = '"+reg+"' ORDER BY city.population DESC;");

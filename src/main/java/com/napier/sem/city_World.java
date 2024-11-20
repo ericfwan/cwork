@@ -3,11 +3,10 @@ package com.napier.sem;
 import java.sql.*;
 
 public class city_World {
-    public void run(){
+    public void run(App app){
         try {
             //db connection
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
-
+            Connection con = app.connectToDatabase();
 
             if (con != null) { // connection integrity check
                 String query = ("SELECT * FROM city ORDER BY population DESC");

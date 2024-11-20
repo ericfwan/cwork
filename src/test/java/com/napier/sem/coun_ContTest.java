@@ -43,15 +43,15 @@ class CounContTest {
         when(mockStatement.executeQuery(anyString())).thenReturn(mockResultSet);
         when(mockResultSet.next()).thenReturn(true).thenReturn(false);  // Simulate one result
 
-        when(mockResultSet.getString("Name")).thenReturn("Country1");
+        when(mockResultSet.getString("Name")).thenReturn("India");
         when(mockResultSet.getString("Continent")).thenReturn("Asia");
-        when(mockResultSet.getInt("Population")).thenReturn(1000000);
+        when(mockResultSet.getInt("Population")).thenReturn(1013662000);
 
         // Call the method you are testing
         counCont.run("Asia");
 
         // Capture and verify the printed output
-        String expectedOutput = "Countries in Asia:\nContinent: Asia, Name: Country1, Population: 1000000\n\n\n\n";
+        String expectedOutput = "Countries in Asia:\nContinent: Asia, Name: India, Population: 1013662000\n\n\n\n";
         assertEquals(expectedOutput, outputStreamCaptor.toString());
 
         // Verify interactions with the mocked objects
