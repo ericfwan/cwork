@@ -22,6 +22,8 @@ class TopNCounWrldTest {
 
     private topNCoun_Wrld topNCounWrld;
 
+    private App app;
+
     @BeforeEach
     void setUp() throws SQLException {
         MockitoAnnotations.openMocks(this);  // Initialize mocks
@@ -41,7 +43,7 @@ class TopNCounWrldTest {
         when(mockResultSet.getInt("Population")).thenReturn(1000000);
 
         // Call the method you are testing
-        topNCounWrld.run(1);
+        topNCounWrld.run(app,1);
 
         // Verify interactions with the mocked objects
         verify(mockStatement, times(1)).executeQuery(anyString());  // Ensure the query was executed once
@@ -55,7 +57,7 @@ class TopNCounWrldTest {
         when(mockResultSet.next()).thenReturn(false);  // No rows in the result set
 
         // Call the method you are testing
-        topNCounWrld.run(1);
+        topNCounWrld.run(app,1);
 
         // Verify the query execution
         verify(mockStatement, times(1)).executeQuery(anyString());
@@ -69,7 +71,7 @@ class TopNCounWrldTest {
 
         // Call the method and assert it throws a runtime exception
         assertThrows(RuntimeException.class, () -> {
-            topNCounWrld.run(1);
+            topNCounWrld.run(app,1);
         });
     }
 

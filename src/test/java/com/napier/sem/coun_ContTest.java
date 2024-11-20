@@ -11,6 +11,8 @@ import java.sql.*;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
 class CounContTest {
 
     @Mock
@@ -24,6 +26,8 @@ class CounContTest {
 
     private coun_Cont counCont;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+    private App app;
 
     @BeforeEach
     void setUp() throws SQLException {
@@ -48,7 +52,7 @@ class CounContTest {
         when(mockResultSet.getInt("Population")).thenReturn(1013662000);
 
         // Call the method you are testing
-        counCont.run("Asia");
+        counCont.run(app, "Asia");
 
         // Capture and verify the printed output
         String expectedOutput = "Countries in Asia:\nContinent: Asia, Name: India, Population: 1013662000\n\n\n\n";
@@ -66,7 +70,7 @@ class CounContTest {
         when(mockResultSet.next()).thenReturn(false);  // No rows in the result set
 
         // Call the method you are testing
-        counCont.run("Antarctica");
+        counCont.run(app,"Antarctica");
 
         // Capture and verify the printed output
         String expectedOutput = "Countries in Antarctica:\n\n\n\n";  // No countries printed
@@ -84,7 +88,7 @@ class CounContTest {
 
         // Call the method and assert it throws a runtime exception
         assertThrows(RuntimeException.class, () -> {
-            counCont.run("Europe");
+            counCont.run(app,"Europe");
         });
     }
 

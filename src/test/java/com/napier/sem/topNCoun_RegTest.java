@@ -22,6 +22,8 @@ class TopNCounRegTest {
 
     private topNCoun_Reg topNCounReg;
 
+    private App app;
+
     @BeforeEach
     void setUp() throws SQLException {
         MockitoAnnotations.openMocks(this);  // Initialize mocks
@@ -41,7 +43,7 @@ class TopNCounRegTest {
         when(mockResultSet.getInt("Population")).thenReturn(1000000);
 
         // Call the method you are testing
-        topNCounReg.run(1, "Asia");
+        topNCounReg.run(app,1, "Asia");
 
         // Verify interactions with the mocked objects
         verify(mockStatement, times(1)).executeQuery(anyString());  // Ensure the query was executed once
@@ -55,7 +57,7 @@ class TopNCounRegTest {
         when(mockResultSet.next()).thenReturn(false);  // No rows in the result set
 
         // Call the method you are testing
-        topNCounReg.run(1, "Europe");
+        topNCounReg.run(app,1, "Europe");
 
         // Verify the query execution
         verify(mockStatement, times(1)).executeQuery(anyString());
@@ -69,7 +71,7 @@ class TopNCounRegTest {
 
         // Call the method and assert it throws a runtime exception
         assertThrows(RuntimeException.class, () -> {
-            topNCounReg.run(1, "Africa");
+            topNCounReg.run(app,1, "Africa");
         });
     }
 

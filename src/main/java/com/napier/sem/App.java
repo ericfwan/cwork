@@ -23,7 +23,7 @@ public class App
                 Thread.sleep(3000);
                 System.out.println("Test");
                 // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
                 System.out.println("Successfully connected");
                 // Wait a bit
                 Thread.sleep(10000);
@@ -38,18 +38,25 @@ public class App
         }
 
 
-        if (con != null)
-        {
-            try
-            {
-                // Close connection
-                con.close();
-            }
-            catch (Exception e)
-            {
-                System.out.println("Error closing connection to database");
-            }
-        }
+
          return con;
+     }
+
+     public void disconnectFromDatabase() throws SQLException {
+
+         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false&allowPublicKeyRetrieval=true", "root", "example");
+         if (con != null)
+         {
+             try
+             {
+                 // Close connection
+                 con.close();
+             }
+             catch (Exception e)
+             {
+                 System.out.println("Error closing connection to database");
+             }
+         }
+
      }
 }
