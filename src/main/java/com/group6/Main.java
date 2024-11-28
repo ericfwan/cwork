@@ -20,7 +20,7 @@ public class Main {
 //        report.allCountriesInRegion(con, "Western Africa");
 //        report.topNCountriesInWorld(con, 10);
 //        report.topNCountriesInContinent(con,5,"Asia");
-//        report.topNCountriesInRegion(con,5,"Western Africa");
+        report.topNCountriesInRegion(con,5,"Western Africa");
         report.allCitiesInWorld(con);
         System.out.println("test");
 
