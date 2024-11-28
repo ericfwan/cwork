@@ -1,4 +1,4 @@
-package personal.priingles;
+package com.group6;
 
 import java.sql.Connection;
 import java.util.ArrayList;

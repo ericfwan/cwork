@@ -1,4 +1,4 @@
-package personal.priingles;
+package com.group6;
 
 public class TestQuery {
 

@@ -24,6 +24,6 @@
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
         <!-- Annotated classes -->
-        <mapping class="personal.h2Entities.Usr" />
+        <mapping class="com.h2Entities.Usr" />
     </session-factory>
 </hibernate-configuration>

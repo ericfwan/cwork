@@ -1,11 +1,10 @@
-package personal.priingles;
+package com.group6;
 
 import org.junit.jupiter.api.*;
 
 
 import java.sql.Connection;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
