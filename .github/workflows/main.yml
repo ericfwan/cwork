@@ -16,7 +16,10 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
       - name: Unit Tests
-        run: mvn -Dtest=personal.priingles.CountryTest test
+        run: |
+          mvn -Dtest=com.group6.CountryTest test
+          mvn -Dtest=com.group6.CityTest test
+        
 
 
   build:
