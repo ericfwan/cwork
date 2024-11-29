@@ -59,7 +59,6 @@ public class CityDAO {
 
     }
 
-
     public City  getCitybyName(String cityName){
         City city = new City();
 

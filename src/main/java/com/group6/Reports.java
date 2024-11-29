@@ -15,6 +15,8 @@ public class Reports{
 
     CountryService countryService;
     CityService cityService;
+    long nPopulation = 0;
+    long cityPopulation = 0;
 
     /// REPORT_1: All COUNTRIES in the WORLD from largest to smallest
     ///
@@ -399,7 +401,7 @@ public class Reports{
         //sorts list in reverse order of population
         cities.sort(Comparator.comparingInt(City::getPopulation).reversed());
 
-        System.out.printf("%-35s %-35s %-30s %-17s\n", "Name", "Country", "District", "Population");
+        System.out.printf("%-35s %-35s %-30s %-30S %-17s\n", "Name", "Country", "Continent", "District", "Population");
 
         for (City city : cities) {
             Country country = countryService.getCountry_Name(city.country);
@@ -411,6 +413,168 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    public void allCapitalCitiesInRegion(Connection con, String regionName) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        ArrayList<City> cities;
+        cities = cityService.getAll();
+
+        //sorts list in reverse order of population
+        cities.sort(Comparator.comparingInt(City::getPopulation).reversed());
+
+        System.out.printf("%-35s %-35s %-30s %-30S %-17s\n", "Name", "Country", "Continent", "District", "Population");
+
+        for (City city : cities) {
+            Country country = countryService.getCountry_Name(city.country);
+            if(country.capital == city.id && city.region.equals(regionName)) {
+                System.out.printf("%-35s %-35s %-30s %-30s %-17d\n", city.name, city.country, city.continent, city.district, city.population);
+            }
+        }
+
+        System.out.println(cities.size());
+    }
+
+    public void topNCapitalCitiesInWorld(Connection con, int top) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        ArrayList<City> cities;
+        cities = cityService.getAll();
+
+        //sorts list in reverse order of population
+        cities.sort(Comparator.comparingInt(City::getPopulation).reversed());
+
+        System.out.printf("%-35s %-35s %-30s %-17s\n", "Name", "Country", "District", "Population");
+
+        int count = 0;
+
+        for (City city : cities) {
+            if(count == top){
+                break;
+            }
+            Country country = countryService.getCountry_Name(city.country);
+            if(country.capital == city.id) {
+                System.out.printf("%-35s %-35s %-30s %-30s %-17d\n", city.name, city.country, city.continent, city.district, city.population);
+                count++;
+            }
+        }
+
+        System.out.println(cities.size());
+    }
+
+    public void topNCapitalCitiesInContinent(Connection con, int top, String continentName) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        ArrayList<City> cities;
+        cities = cityService.getAll();
+
+        //sorts list in reverse order of population
+        cities.sort(Comparator.comparingInt(City::getPopulation).reversed());
+
+        System.out.printf("%-35s %-35s %-30s %-30s %-17s\n", "Name", "Country", "Continent", "District", "Population");
+
+        int count = 0;
+
+        for (City city : cities) {
+            if(count == top){
+                break;
+            }
+            Country country = countryService.getCountry_Name(city.country);
+            if(country.capital == city.id && country.continent.equals(continentName)) {
+                System.out.printf("%-35s %-35s %-30s %-30s %-17d\n", city.name, city.country, city.continent, city.district, city.population);
+                count++;
+            }
+        }
+
+        System.out.println(cities.size());
+    }
+
+    public void topNCapitalCitiesInRegion(Connection con, int top, String regionName) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        ArrayList<City> cities;
+        cities = cityService.getAll();
+
+        //sorts list in reverse order of population
+        cities.sort(Comparator.comparingInt(City::getPopulation).reversed());
+
+        System.out.printf("%-35s %-35s %-30s %-30s %-17s\n", "Name", "Country", "Continent", "District", "Population");
+
+        int count = 0;
+
+        for (City city : cities) {
+            if(count == top){
+                break;
+            }
+            Country country = countryService.getCountry_Name(city.country);
+            if(country.capital == city.id && country.region.equals(regionName)) {
+                System.out.printf("%-35s %-35s %-30s %-30s %-17d\n", city.name, city.country, city.continent, city.district, city.population);
+                count++;
+            }
+        }
+
+        System.out.println(cities.size());
+    }
+
+
+    public void inOutCityPopulationByContinent(Connection con, String continentName) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        ArrayList<Country> countries = countryService.getCountries_Continent(continentName);
+        ArrayList<City> cities = cityService.getAll();
+
+
+
+        for (Country country : countries) {
+            nPopulation += country.population;
+        }
+
+        for (City city : cities) {
+            cityPopulation += city.population;
+        }
+
+        System.out.println("In the continent of "+continentName+", "+cityPopulation+" people live in cities, while "+(nPopulation-cityPopulation)+" people don't.");
+    }
+
+    public void inOutCityPopulationByRegion(Connection con, String regionName) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        ArrayList<Country> countries = countryService.getCountries_Region(regionName);
+        ArrayList<City> cities = cityService.getAll();
+
+        nPopulation = 0;
+
+        for (Country country : countries) {
+            nPopulation += country.population;
+        }
+
+        for (City city : cities) {
+            cityPopulation += city.population;
+        }
+
+        System.out.println("In the region of "+regionName+", "+cityPopulation+" people live in cities, while "+(nPopulation -cityPopulation)+" people don't.");
+    }
+
+    public void inOutCityPopulationByCountry(Connection con, String countryName) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        Country country = countryService.getCountry_Name(countryName);
+        ArrayList<City> cities = cityService.getAll();
+
+        nPopulation = country.population;
+
+        for (City city : cities) {
+            cityPopulation += city.population;
+        }
+
+        System.out.println("In "+countryName+", "+cityPopulation+" people live in cities, while "+(nPopulation -cityPopulation)+" people don't.");
+    }
 
 
 }

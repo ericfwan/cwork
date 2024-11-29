@@ -46,7 +46,7 @@ public class CountryDAO {
 
     }
 
-    public Country getCountrybyName(String countryName) throws Exception {
+    public Country getCountryByName(String countryName) throws Exception {
         Country country = new Country();
         try {
             Statement stmt = con.createStatement();
@@ -78,7 +78,7 @@ public class CountryDAO {
         }
     }
 
-    public ArrayList<Country> getCountrybyContinent(String continentName) throws Exception {
+    public ArrayList<Country> getCountryByContinent(String continentName) throws Exception {
 
         ArrayList<Country> countries = new ArrayList<>();
         try {

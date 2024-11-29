@@ -13,7 +13,10 @@ public class Main {
         db_util db = new db_util();
         Connection con = db.getDbConnection();
         Reports report = new Reports();
-        report.allCapitalCitiesInWorld(con);
+        report.inOutCityPopulationByContinent(con, "Asia");
+        report.inOutCityPopulationByRegion(con, "Western Africa");
+        report.inOutCityPopulationByCountry(con, "Nigeria");
+
 
         System.out.println("test");
 

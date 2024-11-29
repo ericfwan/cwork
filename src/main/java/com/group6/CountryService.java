@@ -16,12 +16,12 @@ public class CountryService {
     }
 
     public Country getCountry_Name(String countryName) throws Exception {
-        return countryDAO.getCountrybyName(countryName);
+        return countryDAO.getCountryByName(countryName);
     }
 
 
     public ArrayList<Country> getCountries_Continent(String continentName) throws Exception {
-        return countryDAO.getCountrybyContinent(continentName);
+        return countryDAO.getCountryByContinent(continentName);
     }
 
     public ArrayList<Country> getCountries_Region(String regionName) throws Exception {
