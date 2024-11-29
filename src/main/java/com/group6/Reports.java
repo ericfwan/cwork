@@ -367,7 +367,49 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    public void allCapitalCitiesInWorld(Connection con) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
 
+        ArrayList<City> cities;
+        cities = cityService.getAll();
+
+        //sorts list in reverse order of population
+        cities.sort(Comparator.comparingInt(City::getPopulation).reversed());
+
+        System.out.printf("%-35s %-35s %-30s %-17s\n", "Name", "Country", "District", "Population");
+
+        for (City city : cities) {
+            Country country = countryService.getCountry_Name(city.country);
+            if(country.capital == city.id) {
+                System.out.printf("%-35s %-35s %-30s %-30s %-17d\n", city.name, city.country, city.continent, city.district, city.population);
+            }
+        }
+
+        System.out.println(cities.size());
+    }
+
+    public void allCapitalCitiesInContinent(Connection con, String continentName) throws Exception {
+        countryService = new CountryService(con);
+        cityService = new CityService(con);
+
+        ArrayList<City> cities;
+        cities = cityService.getAll();
+
+        //sorts list in reverse order of population
+        cities.sort(Comparator.comparingInt(City::getPopulation).reversed());
+
+        System.out.printf("%-35s %-35s %-30s %-17s\n", "Name", "Country", "District", "Population");
+
+        for (City city : cities) {
+            Country country = countryService.getCountry_Name(city.country);
+            if(country.capital == city.id && city.continent.equals(continentName)) {
+                System.out.printf("%-35s %-35s %-30s %-30s %-17d\n", city.name, city.country, city.continent, city.district, city.population);
+            }
+        }
+
+        System.out.println(cities.size());
+    }
 
 
 

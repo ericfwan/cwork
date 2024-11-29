@@ -13,6 +13,7 @@ public class Main {
         db_util db = new db_util();
         Connection con = db.getDbConnection();
         Reports report = new Reports();
+        report.allCapitalCitiesInWorld(con);
 
         System.out.println("test");
 
