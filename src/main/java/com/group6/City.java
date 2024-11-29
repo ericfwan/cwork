@@ -6,6 +6,8 @@ public class City {
     public String name;
     public String countryCode;
     public String country;
+    public String region;
+    public String continent;
     public String district;
     public int population;
 
@@ -63,5 +65,22 @@ public class City {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    //Getter and setter for continent
+    public String getContinent() {
+        return continent;
+    }
+
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
+
+    //Getter and setter for region
+    public String getRegion() {
+        return region;
+    }
+    public void setRegion(String region) {
+        this.region = region;
     }
 }
