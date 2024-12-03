@@ -49,7 +49,7 @@ public class db_util {
 
         Thread.sleep(20000);
         for(int i = 0; i < retry2; i++){
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/world?useSSL=false", "root", "example");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/world?allowPublicKeyRetrieval=true&useSSL=false", "root", "example");
 
             if (connection != null){
                 System.out.println("Connected");
