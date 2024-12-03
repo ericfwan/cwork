@@ -68,7 +68,6 @@ public class Population {
 		cities = cityService.getByDistrict(districtName);
 
 		for(City city: cities) {
-			System.out.println(city.getDistrict());
 			this.population += city.getPopulation();
 		}
 
