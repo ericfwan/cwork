@@ -348,6 +348,7 @@ public class Reports{
     }
 
     /// REPORT_16: Top -user-provided_N- CITIES in a DISTRICT
+    ///
     public void topNCitiesInDistrict(Connection con, int top, String districtName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
@@ -369,6 +370,8 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    /// REPORT_17: All CAPITAL CITIES in the WORLD
+    ///
     public void allCapitalCitiesInWorld(Connection con) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
@@ -391,6 +394,8 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    /// REPORT_18: All CAPITAL_CITIES in a CONTINENT
+    ///
     public void allCapitalCitiesInContinent(Connection con, String continentName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
@@ -413,6 +418,8 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    /// REPORT_19: All CAPITAL_CITIES in a REGION
+    ///
     public void allCapitalCitiesInRegion(Connection con, String regionName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
@@ -435,6 +442,8 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    /// REPORT_20: Top -user-provided_N- CAPITAL_CITIES in WORLD
+    ///
     public void topNCapitalCitiesInWorld(Connection con, int top) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
@@ -463,6 +472,8 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    /// REPORT_21: Top -user-provided_N- CAPITAL_CITIES in a CONTINENT
+    ///
     public void topNCapitalCitiesInContinent(Connection con, int top, String continentName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
@@ -491,6 +502,8 @@ public class Reports{
         System.out.println(cities.size());
     }
 
+    /// REPORT_22: Top -user-provided_N- CAPITAL_CITIES in a REGION
+    ///
     public void topNCapitalCitiesInRegion(Connection con, int top, String regionName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
@@ -519,14 +532,14 @@ public class Reports{
         System.out.println(cities.size());
     }
 
-
-    public void inOutCityPopulationByContinent(Connection con, String continentName) throws Exception {
+    /// REPORT_23: The population people living in cities and people not in each CONTINENT
+    ///
+    public void in_OutCityPopulationByContinent(Connection con, String continentName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
 
         ArrayList<Country> countries = countryService.getCountries_Continent(continentName);
-        ArrayList<City> cities = cityService.getAll();
-
+        ArrayList<City> cities = cityService.getByContinent(continentName);
 
 
         for (Country country : countries) {
@@ -540,12 +553,14 @@ public class Reports{
         System.out.println("In the continent of "+continentName+", "+cityPopulation+" people live in cities, while "+(nPopulation-cityPopulation)+" people don't.");
     }
 
+    /// REPORT_24: The population people living in cities and people not in each REGION
+    ///
     public void inOutCityPopulationByRegion(Connection con, String regionName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
 
         ArrayList<Country> countries = countryService.getCountries_Region(regionName);
-        ArrayList<City> cities = cityService.getAll();
+        ArrayList<City> cities = cityService.getByRegion(regionName);
 
         nPopulation = 0;
 
@@ -560,12 +575,14 @@ public class Reports{
         System.out.println("In the region of "+regionName+", "+cityPopulation+" people live in cities, while "+(nPopulation -cityPopulation)+" people don't.");
     }
 
+    /// REPORT_25: The population people living in cities and people not in each COUNTRY
+    ///
     public void inOutCityPopulationByCountry(Connection con, String countryName) throws Exception {
         countryService = new CountryService(con);
         cityService = new CityService(con);
 
         Country country = countryService.getCountry_Name(countryName);
-        ArrayList<City> cities = cityService.getAll();
+        ArrayList<City> cities = cityService.getByCountry(countryName);
 
         nPopulation = country.population;
 

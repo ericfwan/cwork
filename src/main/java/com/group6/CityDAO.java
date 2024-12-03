@@ -61,10 +61,11 @@ public class CityDAO {
 
     public City  getCitybyName(String cityName){
         City city = new City();
+        String query = "select * from city where name='"+cityName+"'";
 
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from city where name='"+cityName+"'");
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+
 
             if(rs.next()) {
                 city.id = rs.getInt("id");
@@ -85,38 +86,153 @@ public class CityDAO {
 
     }
 
-    public ArrayList<City> getCity_Continent(Connection con, String continentName){
-        ArrayList<City> cities = new ArrayList<>();
+    public ArrayList<City> getCityByDistrict(String districtName){
 
-        try {
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from city where");
+        ArrayList<City> cities = new ArrayList<>();
+        this.country = new Country();
+        this.countryService = new CountryService(con);
+        String query = (" SELECT city.id, city.name, city.countryCode, city.district, city.population, country.name AS countryName, country.continent, country.region " +
+                "FROM city " +
+                "JOIN country ON city.countrycode = country.code");
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+
 
             while (rs.next()) {
                 City city = new City();
+
                 city.id = rs.getInt("id");
                 city.name = rs.getString("name");
                 city.countryCode = rs.getString("countryCode");
                 city.district = rs.getString("district");
                 city.population = rs.getInt("population");
+                city.country = rs.getString("countryName");
+                city.continent = rs.getString("continent");
+                city.region = rs.getString("region");
 
-                ResultSet rs2 = stmt.executeQuery("select * from country where code = '"+city.countryCode+"'");
-                if(rs2.next()) {
-                    city.country = rs2.getString("name");
-                    this.country = countryService.getCountry_Name(rs2.getString("name"));
-                }
-                if (country.continent == continentName ){
+
+                if (city.district.equals(districtName)){
                     cities.add(city);
                 }
             }
-
-
-        } catch(SQLException e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
+        }
+
+        return cities;
+    }
+
+    public ArrayList<City> getCityByContinent(String continentName){
+
+        ArrayList<City> cities = new ArrayList<>();
+        this.country = new Country();
+        this.countryService = new CountryService(con);
+        String query = (" SELECT city.id, city.name, city.countryCode, city.district, city.population, country.name AS countryName, country.continent, country.region " +
+                "FROM city " +
+                "JOIN country ON city.countrycode = country.code");
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+
+
+            while (rs.next()) {
+                City city = new City();
+                country = countryService.getCountry_Name(rs.getString("countryName"));
+
+                city.id = rs.getInt("id");
+                city.name = rs.getString("name");
+                city.countryCode = rs.getString("countryCode");
+                city.district = rs.getString("district");
+                city.population = rs.getInt("population");
+                city.country = rs.getString("countryName");
+                city.continent = rs.getString("continent");
+                city.region = rs.getString("region");
+
+
+                if (city.continent.equals(continentName)){
+                    cities.add(city);
+                }
+            }
         } catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
 		return cities;
     }
+
+    public ArrayList<City> getCityByRegion(String regionName){
+
+        ArrayList<City> cities = new ArrayList<>();
+        this.country = new Country();
+        this.countryService = new CountryService(con);
+        String query = (" SELECT city.id, city.name, city.countryCode, city.district, city.population, country.name AS countryName, country.continent, country.region " +
+                "FROM city " +
+                "JOIN country ON city.countrycode = country.code");
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+
+
+            while (rs.next()) {
+                City city = new City();
+                country = countryService.getCountry_Name(rs.getString("countryName"));
+
+                city.id = rs.getInt("id");
+                city.name = rs.getString("name");
+                city.countryCode = rs.getString("countryCode");
+                city.district = rs.getString("district");
+                city.population = rs.getInt("population");
+                city.country = rs.getString("countryName");
+                city.continent = rs.getString("continent");
+                city.region = rs.getString("region");
+
+
+                if (city.region.equals(regionName)){
+                    cities.add(city);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return cities;
+    }
+
+    public ArrayList<City> getCityByCountry(String countryName){
+
+        ArrayList<City> cities = new ArrayList<>();
+        this.country = new Country();
+        String query = (" SELECT city.id, city.name, city.countryCode, city.district, city.population, country.name AS countryName, country.continent, country.region " +
+                "FROM city " +
+                "JOIN country ON city.countrycode = country.code");
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)){
+
+
+            while (rs.next()) {
+                City city = new City();
+
+                city.id = rs.getInt("id");
+                city.name = rs.getString("name");
+                city.countryCode = rs.getString("countryCode");
+                city.district = rs.getString("district");
+                city.population = rs.getInt("population");
+                city.country = rs.getString("countryName");
+                city.continent = rs.getString("continent");
+                city.region = rs.getString("region");
+
+
+                if (city.country.equals(countryName)){
+                    cities.add(city);
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return cities;
+    }
 }
+

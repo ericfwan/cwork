@@ -25,6 +25,6 @@ public class CountryService {
     }
 
     public ArrayList<Country> getCountries_Region(String regionName) throws Exception {
-        return countryDAO.getCountrybyRegion(regionName);
+        return countryDAO.getCountryByRegion(regionName);
     }
 }

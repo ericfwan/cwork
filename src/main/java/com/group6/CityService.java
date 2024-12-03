@@ -19,5 +19,23 @@ public class CityService {
         return cityDAO.getAll();
     }
 
+    public ArrayList<City> getByContinent(String continentName) throws Exception {
+        return cityDAO.getCityByContinent(continentName);
+    }
+
+    public ArrayList<City> getByRegion(String regionName) throws Exception {
+        return cityDAO.getCityByRegion(regionName);
+    }
+
+    public ArrayList<City> getByCountry(String countryName) throws Exception {
+        return cityDAO.getCityByCountry(countryName);
+    }
+
+    public ArrayList<City> getByDistrict(String districtName) throws Exception {
+        return cityDAO.getCityByDistrict(districtName);
+    }
+
+
+
 
 }

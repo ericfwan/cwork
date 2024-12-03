@@ -119,8 +119,7 @@ public class CountryDAO {
 
     }
 
-
-    public ArrayList<Country> getCountrybyRegion(String regionName) throws Exception {
+    public ArrayList<Country> getCountryByRegion(String regionName) throws Exception {
 
         ArrayList<Country> countries = new ArrayList<>();
         try {
