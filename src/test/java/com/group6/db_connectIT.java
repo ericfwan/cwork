@@ -14,7 +14,7 @@ public class db_connectIT {
 
 	@Test
 	public void db_connect() throws SQLException, InterruptedException {
-		con = db.getDbConnection();
+		con = db.getITConnection();
 		assertTrue(con != null);
 	}
 }

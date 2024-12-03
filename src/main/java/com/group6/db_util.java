@@ -40,13 +40,41 @@ public class db_util {
         return con;
     }
 
+    /// returns IT connection
+    ///
+    public Connection getITConnection() throws SQLException, InterruptedException {
+
+        int retry2 = 7;
+        System.out.println("Connecting to database...");
+
+        Thread.sleep(20000);
+        for(int i = 0; i < retry2; i++){
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/world?useSSL=false", "root", "example");
+
+            if (connection != null){
+                System.out.println("Connected");
+                this.con = connection;
+                break;
+            }else{
+
+                System.out.println("Connection Failed\n");
+                Thread.sleep(10000);}
+        }
+
+        if(this.con == null){
+            throw new SQLException("Failed to establish connection to the database");
+        }
+
+        return con;
+    }
+
     ///returns test h2 database connection
     ///
     public static Connection getTestConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", "");
     }
 
-    ///closes connection to database after use expires
+    ///closes connection to database after use
     ///
     public void disconnect() {
         if (con != null) {
