@@ -1,8 +1,6 @@
 name: practice workflow
-on:
-  push:
-      branches:
-        - master
+on: push
+
 jobs:
   unitTests:
     name: Unit Tests
