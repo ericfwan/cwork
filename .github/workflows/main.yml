@@ -1,6 +1,8 @@
 name: practice workflow
-on: push
-
+on:
+  push:
+      branches:
+        - master
 jobs:
   unitTests:
     name: Unit Tests
@@ -69,3 +71,7 @@ jobs:
           automatic_release_tag: "latest"
           files: |
             ./target/*.jar
+            
+            
+            
+
