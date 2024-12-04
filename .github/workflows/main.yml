@@ -40,7 +40,16 @@ jobs:
           mvn -Dtest=com.group6.db_connectIT test          
           docker stop world
           docker rm world
-          docker image rm database                    
+          docker image rm database    
+
+      - name: CodeCov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./target/site/jacoco
+          flags: Integration Tests # optional
+          verbose: true # optional (default = false)
+          slug: ericfwan/cwork
   
   
   
