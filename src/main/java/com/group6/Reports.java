@@ -18,8 +18,8 @@ public class Reports{
     long nPopulation = 0;
     long cityPopulation = 0;
 
-    /// REPORT_1: All COUNTRIES in the WORLD from largest to smallest
-    ///
+    /** REPORT_1: All COUNTRIES in the WORLD from largest to smallest
+    **/
     public void allCountriesInWorld(Connection con){
 
         countryService = new CountryService(con);
@@ -38,8 +38,8 @@ public class Reports{
         }
     }
 
-    /// REPORT_2:  All COUNTRIES in a CONTINENT from largest to smallest
-    ///
+    /** REPORT_2:  All COUNTRIES in a CONTINENT from largest to smallest
+    **/
     public void allCountriesInContinent(Connection con, String continentName) throws Exception {
 
         countryService = new CountryService(con);
