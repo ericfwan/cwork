@@ -19,9 +19,9 @@ public class db_util {
         int retry2 = 7;
         System.out.println("Connecting to database...");
 
-        Thread.sleep(20000);
+        //Thread.sleep(20000);
         for(int i = 0; i < retry2; i++){
-            Connection connection = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "example");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/world?useSSL=false", "root", "example");
 
             if (connection != null){
                 System.out.println("Connected");

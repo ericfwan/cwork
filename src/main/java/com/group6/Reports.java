@@ -31,9 +31,10 @@ public class Reports{
         countries.sort(Comparator.comparingInt(Country::getPopulation).reversed());
 
         System.out.printf("%-7s %-45s %-20s %-30s %-17s %-10s\n", "Code", "Name","Continent", "Region", "Population", "Capital" );
-
+        System.out.println("___________________________________________________________________________________________________________________________________________");
         for (Country country : countries) {
             System.out.printf("%-7s %-45s %-20s %-30s %-17d %-10s\n", country.code, country.name, country.continent, country.region, country.population, country.capital);
+            System.out.println("___________________________________________________________________________________________________________________________________________");
         }
     }
 

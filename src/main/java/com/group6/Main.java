@@ -13,21 +13,10 @@ public class Main {
         Connection con = db.getDbConnection();
         Reports report = new Reports();
         Population population = new Population();
-//        report.in_OutCityPopulationByContinent(con, "Africa");
-//        report.inOutCityPopulationByRegion(con, "Western Africa");
-//        report.inOutCityPopulationByCountry(con, "Nigeria");
-        population.world(con);
-        population.continent(con, "Asia");
-        population.country(con, "Nigeria");
-        population.region(con, "Western Africa");
-        population.district(con, "Gelderland");
-        population.city(con, "San Diego");
+
+        report.allCountriesInWorld(con);
+        report.allCountriesInContinent(con, "Asia");
 
 
-        System.out.println("test");
-
-
-
-        //con.close();
-             }
+    }
 }
