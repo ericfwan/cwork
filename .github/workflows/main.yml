@@ -20,6 +20,15 @@ jobs:
           mvn -Dtest=com.group6.CountryTest test
           mvn -Dtest=com.group6.CityTest test
 
+      - name: CodeCov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./target/site/jacoco
+          flags: Integration Tests # optional
+          verbose: true # optional (default = false)
+          slug: ericfwan/cwork
+
   integrationTests:
     name: Integration Tests
     runs-on: ubuntu-20.04
